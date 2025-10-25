@@ -1,0 +1,24 @@
+name: CI Parshin
+
+on:
+    push: 
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout code
+          uses: actions/checkoutv4
+
+        - name: Install dependencies
+          run: npm i
+
+        - name: Run linting
+          run: npm run lint
+
+        - name: Run tests
+          run: npm run test
