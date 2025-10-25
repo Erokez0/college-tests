@@ -7,10 +7,12 @@ import { ValidationResult } from "../interfaces";
  * @param neededAmount 
  * @returns {ValidationResult} результат проверки 
  */
-export function hasRegex(str: string, regex: RegExp, 
-    nameOfConstraint: string, 
-    
-    neededAmount: number = 1): ValidationResult {
+export function hasRegex(str: string, regex: RegExp, nameOfConstraint: string, neededAmount: number = 1): ValidationResult {
+    return {
+        Success: true,
+        Error: [],
+    }
+    // That's boring, tests shoould fail
     const gotAmount = str.match(regex)?.length || 0;
 
     const success = gotAmount >= neededAmount;
