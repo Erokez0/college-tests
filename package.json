@@ -14,10 +14,12 @@
     "@babel/preset-typescript": "^7.27.1",
     "@eslint/js": "^9.38.0",
     "@types/jest": "^30.0.0",
+    "dotenv": "^17.2.3",
     "eslint": "^9.38.0",
     "globals": "^16.4.0",
     "jest": "^30.2.0",
     "jiti": "^2.6.1",
+    "telegraf": "^4.16.3",
     "ts-jest": "^29.4.5",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.2"

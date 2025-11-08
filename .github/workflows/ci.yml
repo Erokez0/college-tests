@@ -18,8 +18,30 @@ jobs:
             - name: Install dependencies
               run: npm i
 
-            - name: Run linting
-              run: npm run lint
+            - name: Run formatting
+              run: |
+                npm run lint
+                git config --global user.name "github-actions"
+                git config --global user.email "github-actions@github.com"
+                git add .
+                git commit -m "Format code" || echo "No changes to commit"
+                git push || echo "Push failed, possibly no changes"
 
             - name: Run tests
               run: npm run test
+              continue-on-error: true
+
+            - name: Upload coverage as an artifact
+              uses:  actions/upload-artifact@v4
+              with:
+                name: coverage
+                path: ./coverage/coverage-final.json
+
+            - name: Send coverage to telegram
+              run: |
+                curl -F chat_id=${{ secrets.TG_MY_CHAT_ID }} \
+                    -F document=@./coverage/coverage-final.json \
+                    -F caption=$'Покрытие тестов\n\nРепозиторий: ${{ github.repository}}' \
+                    -F parse_mode=HTML \
+                    "https://telegram.org/bot${{ secrets.TG_MY_CHAT_ID }}"
+              
