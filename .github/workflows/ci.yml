@@ -39,6 +39,7 @@ jobs:
 
             - name: Send coverage to telegram
               run: |
+                echo "${{ secrets.TG_MY_CHAT_ID }}"
                 curl -F chat_id=${{ secrets.TG_MY_CHAT_ID }} \
                     -F document=@./coverage/coverage-final.json \
                     -F caption=$'Покрытие тестов\n\nРепозиторий: ${{ github.repository}}' \
