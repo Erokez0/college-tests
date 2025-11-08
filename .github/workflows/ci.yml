@@ -43,5 +43,5 @@ jobs:
                     -F document=@./coverage/coverage-final.json \
                     -F caption=$'Покрытие тестов\n\nРепозиторий: ${{ github.repository}}' \
                     -F parse_mode=HTML \
-                    "https://telegram.org/bot${{ secrets.TG_MY_CHAT_ID }}/sendDocument"
+                    "https://api.telegram.org/bot${{ secrets.TG_MY_CHAT_ID }}/sendDocument"
               
